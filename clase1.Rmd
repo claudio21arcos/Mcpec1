@@ -1,0 +1,156 @@
+---
+title: "Curso de R"
+author: Ana Julia Escobar
+date: 25 de enero de 2017
+output: 
+---
+
+## Introducci?n {.flexbox .vcenter}
+R es un software para el an?lisis estad?stico de datos considerado como uno de los m?s interesantes.
+Beneficios de R:
+
+     - Almacenamiento y manipulaci?n efectiva de datos.
+     - Operadores para c?lculo sobre variables indexadas.
+     - Amplia colecci?n de herramientas para an?lisis de datos.
+     - Posibilidades gr?ficas para an?lisis de datos
+
+## Ayuda sobre funciones y capacidades
+Para recibir ayuda sobre una funci?n o un
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+#help(solve) o ?solve
+#help("[[") o #help.start()
+```
+Para almacenar objetos se usa $<-$ o $=$ (asignaci?n) de la siguiente manera
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+a<-2
+b<-rnorm(5,0,1)
+```
+Para presentar los valores almacenados se escribe de nuevo el nombre de la variable
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=F,error=F,results='markup'}
+a<-2
+a
+b<-rnorm(5,0,1)
+b
+```
+##Estructura de datos
+Los tipos de datos que R tiene son:
+
+- Vectores
+- Factores
+- Matrices
+- Data.frame
+- Listas
+
+## Vectores
+Existen clases de vectores: num?ricos o caracteres.
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+##Creando vectores
+a<-c(1,5,6,8,4); a
+b<-runif(n = 5,min = 0,max = 100);b
+b<-round(b,2);b
+```
+## 
+
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+c<-c("Quito","Ambato","Guayaquil","Cuenca");c
+d<-seq(1,100,1);d
+e<-rep("No Informa",10);e
+```
+## Seleccionar un elemento de un vector
+
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+x = c(18,11,12,10,7,6,17)
+x[c(1,3,6)]
+x[-3]
+x[-c(1,2)]
+```
+##
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+
+#Especificar una condici?n l?gica. En el caso del vector x creado arriba:
+x>10
+x[x>10]
+s <- "Hola mundo";s
+```
+##
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+class(s)
+length(s)
+nchar(s)
+substr(s, 5, 10)
+```
+##
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+substring(s, 1, 5)
+substr(s, 5, rep(8, 3))
+substring(s, 5, rep(8, 3))
+substr(s, 5, 8) <- "-";s
+```
+##
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+a<-"Ecuador"
+b<-"Quito"
+c
+paste(a,b)
+match("Cuenca",c)
+pmatch("Cue",c)
+```
+##
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+
+texto <- c("Handel", "Haendel","H?andel","Handemore","Mendel","Handle")
+patron <- "H[a|?a](e)?ndel"
+musicos <- grep(patron, texto)
+texto[musicos]
+```
+## Factores
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+estudiantes.origen<-c("getafe","mostoles","madrid","madrid","mostoles", 
+"leganes","getafe","leganes","madrid","mostoles",
+"parla","alcorcon","mostoles","getafe","leganes")
+festudiantes<-as.factor(estudiantes.origen) 
+levels(festudiantes) 
+summary(festudiantes) 
+estudiantes.estaturas <- c(1.83, 1.71, 1.79, 1.64, 1.74,
+                           1.81, 1.62, 1.84, 1.68, 1.81, 
+                           1.82, 1.74, 1.84, 1.61, 1.84) 
+```
+##Matrices
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+t(matrix(1:6))
+matrix(1:6,nrow=2) 
+matrix(1:6,nrow=2,byrow=T) 
+```
+##Data Frame
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+data<-data.frame(iris)
+summary(cars)
+```
+##
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+str(iris)
+iris[1,]
+```
+##
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+iris[2, 5]
+(x <- cbind(iris[1:5,], nuevaCol=1:5))
+```
+##
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+head(x)
+```
+##
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+plot(iris)
+```
+## Funciones
+```{r ,warning=F,eval=T,message=F,comment=" ",echo=T,error=F,results='markup'}
+f <- function(v) {
+  v <- v[!is.na(v)]
+  p <- sum(v) / length(v)
+  p
+}
+x<-c(5,12,35,489,132,NA,132,12,NA)
+f(x)
+```
